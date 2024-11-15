@@ -2,19 +2,38 @@ import { Request, Response } from "express";
 import catchAsync from "../../shared/catchAsync";
 import { AuthService } from "../auth/auth.service";
 import sendResponse from "../../shared/sendResponse";
+import { AdminService } from "./admin.service";
+import { IUser } from "../auth/auth.interface";
 
-const createTrainer = catchAsync(async (req: Request, res: Response) => {
+const getTrainer = catchAsync(async (req: Request, res: Response) => {
   // Check if userBody is undefined
-  const user = req.body;
-  console.log(user, "check user");
-  const result = await AuthService.createUser(user);
+
+  const result = await AdminService.getTrainers();
 
   if (result !== null) {
     sendResponse(res, {
       success: true,
       statusCode: 201,
-      message: ` Account created successfully`,
+      message: ` Tainsers get successfully`,
       data: result,
     });
   }
 });
+const updateSingleTrainer = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updateData = req.body;
+
+  const result = await AdminService.updateSingleTrainer(id, updateData);
+
+  sendResponse<IUser>(res, {
+    success: true,
+    statusCode: 201,
+
+    message: "Trainer  updated successfully",
+    data: result,
+  });
+});
+export const AdminController = {
+  getTrainer,
+  updateSingleTrainer,
+};
