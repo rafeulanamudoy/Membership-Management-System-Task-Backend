@@ -20,7 +20,14 @@ export type IUserExistReturn = {
   password: string;
   role: ENUM_USER_ROLE;
 };
-
+export type ILoginUser = {
+  email: string;
+  password: string;
+};
+export type ILoginUserResponse = {
+  refreshToken?: string;
+  accessToken: string;
+};
 export type UserModel = {
   isUserExist(
     email: string

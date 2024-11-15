@@ -34,6 +34,19 @@ const signUpZodSchema = z.object({
     secret_key: z.string({}).optional(),
   }),
 });
+const loginZodSchema = z.object({
+  body: z.object({
+    email: z
+      .string({
+        required_error: "email is required",
+      })
+      .email("this is not a valid email"),
+    password: z.string({
+      required_error: "Password is required",
+    }),
+  }),
+});
 export const AuthValidation = {
   signUpZodSchema,
+  loginZodSchema,
 };

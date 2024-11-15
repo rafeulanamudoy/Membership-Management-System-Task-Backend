@@ -11,3 +11,10 @@ router.post(
   validateRequest(AuthValidation.signUpZodSchema),
   AuthController.createUser
 );
+router.post(
+  "/signIn",
+
+  validateRequest(AuthValidation.loginZodSchema),
+
+  AuthController.loginUser
+);
