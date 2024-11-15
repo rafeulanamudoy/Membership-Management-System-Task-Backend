@@ -24,8 +24,7 @@ export type ILoginUser = {
   email: string;
   password: string;
 };
-export type ILoginUserResponse = {
-  refreshToken?: string;
+export type UserResponse = {
   accessToken: string;
 };
 export type UserModel = {

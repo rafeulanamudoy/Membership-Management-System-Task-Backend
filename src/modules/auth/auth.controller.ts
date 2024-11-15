@@ -7,16 +7,15 @@ import { Request, Response } from "express";
 const createUser = catchAsync(async (req: Request, res: Response) => {
   // Check if userBody is undefined
   const user = req.body;
-
+  console.log(user, "check user");
   const result = await AuthService.createUser(user);
 
   if (result !== null) {
-    const { password, ...others } = result;
     sendResponse(res, {
       success: true,
       statusCode: 201,
       message: ` Account created successfully`,
-      data: others,
+      data: result,
     });
   }
 });
@@ -25,23 +24,12 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
 
   const result = await AuthService.loginUser(loginData);
 
-  const cookieOptions = {
-    secure: config.env === "development",
-    httpOnly: true,
-  };
-
-  if (result !== null) {
-    const { refreshToken, ...others } = result;
-
-    res.cookie("refreshToken", refreshToken, cookieOptions);
-
-    sendResponse(res, {
-      statusCode: 400,
-      success: true,
-      message: "User logged in successfully!",
-      data: others,
-    });
-  }
+  sendResponse(res, {
+    statusCode: 201,
+    success: true,
+    message: "User logged in successfully!",
+    data: result,
+  });
 });
 export const AuthController = {
   createUser,

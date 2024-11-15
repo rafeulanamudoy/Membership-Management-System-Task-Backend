@@ -8,6 +8,7 @@ export default {
   env: process.env.NODE_ENV,
   port: process.env.PORT,
   database_url: process.env.DATABASE_URL,
+  admin_secret_key: process.env.ADMIN_SECRET_KEY,
   bycrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
   jwt: {
     secret: process.env.JWT_SECRET,

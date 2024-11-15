@@ -1,19 +1,26 @@
 import { Secret } from "jsonwebtoken";
 import ApiError from "../../errors/handleApiError";
 import { jwtHelpers } from "../../helpers/jwtHelpers";
-import { ILoginUser, ILoginUserResponse, IUser } from "./auth.interface";
+import { ILoginUser, IUser, UserResponse } from "./auth.interface";
 import { User } from "./auth.model";
 import config from "../../config";
 
-const createUser = async (user: IUser): Promise<IUser | null> => {
+const createUser = async (user: IUser): Promise<UserResponse | null> => {
   const createUser = await User.create({
     ...user,
   });
-  return createUser.toObject();
+  const { _id, email, role } = createUser.toObject();
+  const accessToken = jwtHelpers.createToken(
+    { _id, email, role },
+    config.jwt.secret as Secret,
+    config.jwt.expires_in as string
+  );
+
+  return {
+    accessToken,
+  };
 };
-const loginUser = async (
-  payload: ILoginUser
-): Promise<ILoginUserResponse | null> => {
+const loginUser = async (payload: ILoginUser): Promise<UserResponse | null> => {
   const { email, password } = payload;
 
   const isUserExist = await User.isUserExist(email);
@@ -35,14 +42,9 @@ const loginUser = async (
     config.jwt.secret as Secret,
     config.jwt.expires_in as string
   );
-  const refreshToken = jwtHelpers.createToken(
-    { _id, userEmail, role },
-    config.jwt.refresh_secret as Secret,
-    config.jwt.refresh_expires_in as string
-  );
+
   return {
     accessToken,
-    refreshToken,
   };
 };
 export const AuthService = {

@@ -8,14 +8,12 @@ const duplicateError = (error: MongoError) => {
       message: error.message,
     },
   ];
-  const statusCode = 400;
 
   return {
-    statusCode,
-    message: "Phone Number And Email Must Have To Be Unique",
+    message: "Email Must Have To Be Unique",
     errorCode: error.code,
 
-    errorMessages: errors,
+    errorDetails: errors,
   };
 };
 

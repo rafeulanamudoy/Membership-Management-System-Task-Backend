@@ -1,4 +1,3 @@
-import httpStatus from "http-status";
 import mongoose from "mongoose";
 import { IGenericErrorMessage } from "../interfaces/error";
 import { IGenericErrorResponse } from "../interfaces/general";
@@ -12,12 +11,10 @@ const handleValidationError = (
       message: el?.message,
     };
   });
-  const statusCode = httpStatus.CONFLICT;
 
   return {
-    statusCode,
     message: "validation Error",
-    errorMessages: errors,
+    errorDetails: errors,
   };
 };
 

@@ -14,34 +14,33 @@ import ApiError from "../errors/handleApiError";
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   let statusCode = 500;
   let message = "something went wrong";
-  let errorMessages: IGenericErrorMessage[] = [];
+  let errorDetails: IGenericErrorMessage[] = [];
   let errorCode;
 
   if (err?.name === "ValidationError") {
     const simplifiedError = handleValidationError(err);
-    statusCode = simplifiedError.statusCode;
+
     message = simplifiedError.message;
-    errorMessages = simplifiedError.errorMessages;
+    errorDetails = simplifiedError.errorDetails;
   } else if (err?.name == "CastError") {
     const simplifiedError = handleCastError(err);
-    statusCode = simplifiedError?.statusCode;
+
     message = simplifiedError?.message;
-    errorMessages = simplifiedError?.errorMessages;
+    errorDetails = simplifiedError?.errorDetails;
   } else if (err instanceof MongoError && err.code === 11000) {
     const simplifiedError = duplicateError(err);
-    statusCode = simplifiedError?.statusCode;
+
     message = simplifiedError?.message;
-    errorMessages = simplifiedError?.errorMessages;
+    errorDetails = simplifiedError?.errorDetails;
     errorCode = simplifiedError.errorCode;
   } else if (err instanceof ZodError) {
     const simplifiedError = handleZodError(err);
-    statusCode = simplifiedError.statusCode;
+
     message = simplifiedError.message;
-    errorMessages = simplifiedError.errorMessages;
+    errorDetails = simplifiedError.errorDetails;
   } else if (err instanceof ApiError) {
-    statusCode = err.statusCode;
     message = err?.message;
-    errorMessages = err?.message
+    errorDetails = err?.message
       ? [
           {
             path: "",
@@ -52,7 +51,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   } else if (err instanceof Error) {
     message = err?.message;
 
-    errorMessages = err?.message
+    errorDetails = err?.message
       ? [
           {
             path: "",
@@ -66,7 +65,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     res.status(statusCode).json({
       success: false,
       message,
-      errorMessages,
+      errorDetails,
       errorCode,
 
       stack: config.env !== "production" ? err?.stack : undefined,
