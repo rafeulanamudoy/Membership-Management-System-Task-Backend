@@ -24,7 +24,7 @@ const viewEnrollClass = async (
 
   const enrolledClasses = await Schedule.find({
     trainees: { $in: [traineeObjectId] }, // Ensure it's the correct type
-  });
+  }).populate("trainer");
 
   return enrolledClasses;
 };
