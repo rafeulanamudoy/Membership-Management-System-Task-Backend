@@ -1,0 +1,23 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AdminRoutes = void 0;
+const express_1 = __importDefault(require("express"));
+const admin_middleware_1 = __importDefault(require("./admin.middleware"));
+const validateRequest_1 = __importDefault(require("../../middlewares/validateRequest"));
+const auth_validation_1 = require("../auth/auth.validation");
+const auth_controller_1 = require("../auth/auth.controller");
+const admin_controller_1 = require("./admin.controller");
+const checkClassLimit_1 = require("../../middlewares/checkClassLimit");
+const router = express_1.default.Router();
+exports.AdminRoutes = router;
+router.post("/signUp", (0, admin_middleware_1.default)(), (0, validateRequest_1.default)(auth_validation_1.AuthValidation.signUpZodSchema), auth_controller_1.AuthController.createUser);
+router.post("/trainers", (0, validateRequest_1.default)(auth_validation_1.AuthValidation.signUpZodSchema), auth_controller_1.AuthController.createUser);
+router.get("/trainers", admin_controller_1.AdminController.getTrainer);
+router.patch("/trainers/:id", admin_controller_1.AdminController.updateSingleTrainer);
+router.delete("/trainers/:id", admin_controller_1.AdminController.deleteSingleTrainer);
+router.post("/createClass", checkClassLimit_1.checkClassLimit, admin_controller_1.AdminController.createSchedule);
+router.get("/getClass", admin_controller_1.AdminController.getClass);
+router.get("/trainer/:id", admin_controller_1.AdminController.getSingleTrainer);
