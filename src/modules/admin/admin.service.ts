@@ -14,7 +14,13 @@ const updateSingleTrainer = async (
   });
   return result;
 };
+const deleteSingleTrainer = async (id: string): Promise<IUser | null> => {
+  const deleteUser = await User.findByIdAndDelete(id);
+  return deleteUser;
+};
+
 export const AdminService = {
   getTrainers,
   updateSingleTrainer,
+  deleteSingleTrainer,
 };

@@ -7,6 +7,7 @@ const AdminCredential =
   () => async (req: Request, res: Response, next: NextFunction) => {
     try {
       const credential = req.body;
+      console.log("admin middleware", req.body);
 
       if (!credential || !credential.role || !credential.secret_key) {
         throw new ApiError(

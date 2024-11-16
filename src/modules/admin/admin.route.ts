@@ -34,3 +34,8 @@ router.patch(
 
   AdminController.updateSingleTrainer
 );
+router.delete(
+  "/trainers/:id",
+
+  AdminController.deleteSingleTrainer
+);

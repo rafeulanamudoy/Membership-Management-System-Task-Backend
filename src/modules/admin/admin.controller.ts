@@ -33,7 +33,21 @@ const updateSingleTrainer = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const deleteSingleTrainer = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const result = await AdminService.deleteSingleTrainer(id);
+
+  sendResponse<IUser>(res, {
+    success: true,
+    statusCode: 201,
+
+    message: "Trainer deleted  successfully",
+    data: result,
+  });
+});
 export const AdminController = {
   getTrainer,
   updateSingleTrainer,
+  deleteSingleTrainer,
 };
