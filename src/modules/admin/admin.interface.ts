@@ -5,6 +5,7 @@ export type ISchedule = {
   className: string;
   trainer: Schema.Types.ObjectId; // Reference to Trainer model
   date: Date;
+  time: string;
   duration: number; // In minutes
   maxCapacity: number;
   trainees: Schema.Types.ObjectId[]; // Reference to Trainee model

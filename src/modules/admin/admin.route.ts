@@ -46,3 +46,13 @@ router.post(
 
   AdminController.createSchedule
 );
+router.get(
+  "/getClass",
+
+  AdminController.getClass
+);
+router.get(
+  "/trainer/:id",
+
+  AdminController.getSingleTrainer
+);

@@ -13,12 +13,16 @@ const ScheduleSchema = new Schema<ISchedule>(
     },
     trainer: {
       type: Schema.Types.ObjectId,
-      ref: "Trainer",
+      ref: "User",
       required: true,
     },
     date: {
       type: Date,
       required: true,
+    },
+    time: {
+      type: String,
+      require: true,
     },
     duration: {
       type: Number,
@@ -32,7 +36,7 @@ const ScheduleSchema = new Schema<ISchedule>(
     trainees: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Trainee",
+        ref: "User",
       },
     ],
   },

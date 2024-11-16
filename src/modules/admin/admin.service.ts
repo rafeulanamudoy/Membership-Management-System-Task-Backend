@@ -25,9 +25,20 @@ const createSchedule = async (data: ISchedule) => {
   const schedule = Schedule.create(data);
   return schedule;
 };
+
+const getClass = async (): Promise<ISchedule[] | null> => {
+  const classes = await Schedule.find({}).populate("trainer");
+  return classes;
+};
+const getSingleTrainer = async (id: string): Promise<IUser | null> => {
+  const trainer = await User.findById(id);
+  return trainer;
+};
 export const AdminService = {
   getTrainers,
   updateSingleTrainer,
   deleteSingleTrainer,
   createSchedule,
+  getClass,
+  getSingleTrainer,
 };

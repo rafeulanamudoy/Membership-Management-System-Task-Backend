@@ -61,9 +61,40 @@ const createSchedule = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const getClass = catchAsync(async (req: Request, res: Response) => {
+  // Check if userBody is undefined
+
+  const result = await AdminService.getClass();
+
+  if (result !== null) {
+    sendResponse(res, {
+      success: true,
+      statusCode: 201,
+      message: ` Classes get successfully`,
+      data: result,
+    });
+  }
+});
+const getSingleTrainer = catchAsync(async (req: Request, res: Response) => {
+  // Check if userBody is undefined
+  const id = req.params.id;
+  const result = await AdminService.getSingleTrainer(id);
+
+  if (result !== null) {
+    sendResponse(res, {
+      success: true,
+      statusCode: 201,
+      message: ` Trainer  get successfully`,
+      data: result,
+    });
+  }
+});
+
 export const AdminController = {
   getTrainer,
   updateSingleTrainer,
   deleteSingleTrainer,
   createSchedule,
+  getClass,
+  getSingleTrainer,
 };
