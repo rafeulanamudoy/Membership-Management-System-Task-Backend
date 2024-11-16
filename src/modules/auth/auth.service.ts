@@ -9,9 +9,9 @@ const createUser = async (user: IUser): Promise<UserResponse | null> => {
   const createUser = await User.create({
     ...user,
   });
-  const { _id, email, role } = createUser.toObject();
+  const { _id, email: userEmail, role } = createUser.toObject();
   const accessToken = jwtHelpers.createToken(
-    { _id, email, role },
+    { _id, userEmail, role },
     config.jwt.secret as Secret,
     config.jwt.expires_in as string
   );

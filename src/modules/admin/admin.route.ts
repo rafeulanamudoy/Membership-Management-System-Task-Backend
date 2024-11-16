@@ -4,6 +4,7 @@ import validateRequest from "../../middlewares/validateRequest";
 import { AuthValidation } from "../auth/auth.validation";
 import { AuthController } from "../auth/auth.controller";
 import { AdminController } from "./admin.controller";
+import { checkClassLimit } from "../../middlewares/checkClassLimit";
 
 const router = express.Router();
 
@@ -38,4 +39,10 @@ router.delete(
   "/trainers/:id",
 
   AdminController.deleteSingleTrainer
+);
+router.post(
+  "/createClass",
+  checkClassLimit,
+
+  AdminController.createSchedule
 );

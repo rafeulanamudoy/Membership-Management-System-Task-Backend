@@ -4,6 +4,7 @@ import { AuthService } from "../auth/auth.service";
 import sendResponse from "../../shared/sendResponse";
 import { AdminService } from "./admin.service";
 import { IUser } from "../auth/auth.interface";
+import { ISchedule } from "./admin.interface";
 
 const getTrainer = catchAsync(async (req: Request, res: Response) => {
   // Check if userBody is undefined
@@ -46,8 +47,23 @@ const deleteSingleTrainer = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const createSchedule = catchAsync(async (req: Request, res: Response) => {
+  const classSchedule = req.body;
+  console.log("class scedule", classSchedule);
+
+  const result = await AdminService.createSchedule(classSchedule);
+
+  sendResponse<ISchedule>(res, {
+    success: true,
+    statusCode: 201,
+
+    message: "Class Schedule Create  successfully",
+    data: result,
+  });
+});
 export const AdminController = {
   getTrainer,
   updateSingleTrainer,
   deleteSingleTrainer,
+  createSchedule,
 };
