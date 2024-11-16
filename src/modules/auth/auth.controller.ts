@@ -1,6 +1,7 @@
 import config from "../../config";
 import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
+import { IUser } from "./auth.interface";
 import { AuthService } from "./auth.service";
 import { Request, Response } from "express";
 
@@ -31,7 +32,37 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const getSingleUser = catchAsync(async (req: Request, res: Response) => {
+  // Check if userBody is undefined
+  const email = req.params.email;
+  const result = await AuthService.getSingleUser(email);
+
+  if (result !== null) {
+    sendResponse(res, {
+      success: true,
+      statusCode: 201,
+      message: ` User  get successfully`,
+      data: result,
+    });
+  }
+});
+const updateSingleUser = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updateData = req.body;
+
+  const result = await AuthService.updateSingleUser(id, updateData);
+
+  sendResponse<IUser>(res, {
+    success: true,
+    statusCode: 201,
+
+    message: "User   updated successfully",
+    data: result,
+  });
+});
 export const AuthController = {
   createUser,
   loginUser,
+  getSingleUser,
+  updateSingleUser,
 };

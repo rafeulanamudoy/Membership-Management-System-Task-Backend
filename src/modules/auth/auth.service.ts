@@ -47,7 +47,22 @@ const loginUser = async (payload: ILoginUser): Promise<UserResponse | null> => {
     accessToken,
   };
 };
+const getSingleUser = async (email: string): Promise<IUser | null> => {
+  const user = await User.findOne({ email: email });
+  return user;
+};
+const updateSingleUser = async (
+  id: string,
+  payload: Partial<IUser>
+): Promise<IUser | null> => {
+  const result = await User.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
 export const AuthService = {
   createUser,
   loginUser,
+  getSingleUser,
+  updateSingleUser,
 };

@@ -20,3 +20,14 @@ router.post(
 
   AuthController.loginUser
 );
+
+router.get(
+  "/:email",
+
+  AuthController.getSingleUser
+);
+router.patch(
+  "/:id",
+
+  AuthController.updateSingleUser
+);

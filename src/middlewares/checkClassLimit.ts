@@ -29,7 +29,6 @@ export const checkClassLimit = async (
       return;
     }
 
-    // If all checks pass, call next to move on to the next middleware/controller
     next();
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
