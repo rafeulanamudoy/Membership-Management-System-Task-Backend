@@ -45,31 +45,31 @@ Fitness Manager have three distinct user roles with different levels of access a
 
 # Admin Api EndPoint
 
-#### Create Admin Account:ttps://membership-management-system-backend.vercel.app/api/v1/admin/signUp (Post)
+#### Create Admin Account: https://membership-management-system-backend.vercel.app/api/v1/admin/signUp (Post)
 
-#### Create Trainer Account:ttps://membership-management-system-backend.vercel.app/api/v1/admin/trainers (Post)
+#### Create Trainer Account: https://membership-management-system-backend.vercel.app/api/v1/admin/trainers (Post)
 
-#### Get Trainers :ttps://membership-management-system-backend.vercel.app/api/v1/admin/trainers (Get)
+#### Get Trainers : https://membership-management-system-backend.vercel.app/api/v1/admin/trainers (Get)
 
 #### Update Trainers:ttps://membership-management-system-backend.vercel.app/api/v1/admin/trainers/:id (Patch)
 
-#### Delete Trainers:ttps://membership-management-system-backend.vercel.app/api/v1/admin/trainers/:id (delete)
+#### Delete Trainers: https://membership-management-system-backend.vercel.app/api/v1/admin/trainers/:id (delete)
 
-#### Create Class :ttps://membership-management-system-backend.vercel.app/api/v1/admin/createClass (Post)
+#### Create Class : https://membership-management-system-backend.vercel.app/api/v1/admin/createClass (Post)
 
-#### Get Class :ttps://membership-management-system-backend.vercel.app/api/v1/admin/getClass (Get)
+#### Get Class : https://membership-management-system-backend.vercel.app/api/v1/admin/getClass (Get)
 
-#### Get Single Trainer :ttps://membership-management-system-backend.vercel.app/api/v1/admin/trainer/:id (Get)
+#### Get Single Trainer : https://membership-management-system-backend.vercel.app/api/v1/admin/trainer/:id (Get)
 
 # Trainee Api EndPoint
 
-#### Book Class :ttps://membership-management-system-backend.vercel.app/api/v1/trainee/book/:id (Patch)
+#### Book Class : https://membership-management-system-backend.vercel.app/api/v1/trainee/book/:id (Patch)
 
-#### View Class:ttps://membership-management-system-backend.vercel.app/api/v1/trainee/view/:id (Get)
+#### View Class: https://membership-management-system-backend.vercel.app/api/v1/trainee/view/:id (Get)
 
 # Trainer Api EndPoint
 
-#### Get Trainer Schedule Class :ttps://membership-management-system-backend.vercel.app/api/v1/trainer/:id (Get)
+#### Get Trainer Schedule Class : https://membership-management-system-backend.vercel.app/api/v1/trainer/:id (Get)
 
 # Auth Api EndPoint
 
@@ -80,3 +80,5 @@ Fitness Manager have three distinct user roles with different levels of access a
 ### Update User :https://membership-management-system-backend.vercel.app/account/:id (Patch)
 
 ### Get Single User By Email :https://membership-management-system-backend.vercel.app/account/:email (get)
+
+relationship diagram link: https://lucid.app/lucidchart/653b68dd-4537-4e8e-becb-926cd303cdfc/edit?invitationId=inv_c75de30b-4b3a-4ae2-9b8c-81f273ed1d3d
