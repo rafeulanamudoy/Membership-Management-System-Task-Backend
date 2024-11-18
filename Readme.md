@@ -25,7 +25,7 @@ Fitness Manager have three distinct user roles with different levels of access a
      -Admin can add,update and delete trainers
      -Admin can create class and schedule it as 5 max schedule class and 2 hour class.
 
-   - To create a Admin account, visit this link: [Create Admin Account](https://tour-share-front-end.vercel.app/signUp). and also when create account must have provide the Secret Key.and the secret key is **super-secret-key**
+   - To create a Admin account, visit this link: [Create Admin Account](https://membership-management-system-task-front-end.vercel.app/admin). and also when create account must have provide the Secret Key.and the secret key is **super-secret-key**
 
 2. **Trainer**:
 
